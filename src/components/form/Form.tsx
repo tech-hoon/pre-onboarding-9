@@ -6,11 +6,11 @@ import { addTodo } from 'store/actions/todos';
 const Form = () => {
   const dispatch = useDispatch();
   const onAdd = (content: string) => dispatch(addTodo(content));
-  const { onSubmit, onChange } = useForm(onAdd);
+  const { value, onSubmit, onChange } = useForm(onAdd);
 
   return (
     <FormStyled onSubmit={onSubmit}>
-      <Input onChange={onChange} placeholder='할 일을 입력해주세요' />
+      <Input value={value} onChange={onChange} placeholder='할 일을 입력해주세요' />
       <CreateBtn>추가하기</CreateBtn>
     </FormStyled>
   );

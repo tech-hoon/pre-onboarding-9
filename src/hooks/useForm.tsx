@@ -1,8 +1,8 @@
 import { FormEvent, ChangeEvent, useState } from 'react';
 
-type Props = (value: string) => void;
+type callbackType = (value: string) => void;
 
-export const useForm = (callback: Props) => {
+export const useForm = (callback: callbackType) => {
   const [value, setValue] = useState<string>('');
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,8 @@ export const useForm = (callback: Props) => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     value && callback(value);
+    setValue('');
   };
 
-  return { onSubmit, onChange };
+  return { value, onSubmit, onChange };
 };
