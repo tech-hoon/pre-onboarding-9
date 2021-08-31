@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { DeleteBtn, CheckBtn } from 'components';
-import { TodoTypes } from 'types/TodoTypes';
+import { TodoTypes } from 'store/actions/types';
 
 interface Props {
   todo: TodoTypes;
