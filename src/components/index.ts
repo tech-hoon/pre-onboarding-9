@@ -1,8 +1,8 @@
 import TodoItem from './todos/TodoItem';
 import TodoList from './todos/TodoList';
+import TodoCount from './todos/TodoCount';
 import CheckBtn from './todos/CheckBtn';
 import DeleteBtn from './todos/DeleteBtn';
-import CreateBtn from './form/CreateBtn';
-import Input from './form/Input';
+import Form from './form/Form';
 
-export { TodoItem, TodoList, CheckBtn, DeleteBtn, CreateBtn, Input };
+export { TodoItem, TodoList, TodoCount, CheckBtn, DeleteBtn, Form };
