@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { removeTodo } from 'store/actions/todos';
 
-interface Props {}
+interface Props {
+  id: string;
+}
 
-const DeleteBtn = (props: Props) => {
+const DeleteBtn = ({ id }: Props) => {
+  const dispatch = useDispatch();
+  const onRemove = (id: string) => dispatch(removeTodo(id));
+
   return (
     <>
-      <Button>X</Button>
+      <Button onClick={() => onRemove(id)}>X</Button>
     </>
   );
 };

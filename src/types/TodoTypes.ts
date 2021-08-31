@@ -1,8 +1,6 @@
 export interface TodoTypes {
-  id: number;
-  taskName: string;
-  status: string;
-  creator: string;
+  id: string;
+  content: string;
+  isCheck: boolean;
   createdAt: string;
-  updatedAt?: string;
 }

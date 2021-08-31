@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import GlobalStyle from './styles/GlobalStyle';
 import { TodoList, TodoItem, TodoCount, Form } from 'components';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
 
 const App: React.FC = () => {
-  const items = ['item-1', 'item-2', 'item-3'];
+  const todos = useSelector((state: RootState) => state.todos);
 
   return (
     <>
-      <GlobalStyle />
       <Wrapper>
         <Container>
           <Title>Todo List</Title>
           <Form />
           <TodoCount />
           <TodoList>
-            {items.map((item, id) => (
-              <TodoItem key={id} item={item} />
+            {todos.map((todo, id) => (
+              <TodoItem key={id} todo={todo} />
             ))}
           </TodoList>
         </Container>

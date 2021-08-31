@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { DeleteBtn, CheckBtn } from 'components';
+import { TodoTypes } from 'types/TodoTypes';
 
 interface Props {
-  item: string;
+  todo: TodoTypes;
 }
 
-const TodoItem = ({ item }: Props) => (
+const TodoItem = ({ todo: { id, content, isCheck } }: Props) => (
   <Wrapper>
-    <CheckBtn />
-    <Text>{item}</Text>
-    <DeleteBtn />
+    <CheckBtn id={id} isCheck={isCheck} />
+    <Content>{content}</Content>
+    <DeleteBtn id={id} />
   </Wrapper>
 );
 
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
-const Text = styled.h2`
+const Content = styled.h2`
   font-size: 16px;
 `;
 

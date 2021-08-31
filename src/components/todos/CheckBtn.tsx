@@ -1,12 +1,19 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { toggleTodo } from 'store/actions/todos';
 
-interface Props {}
+interface Props {
+  id: string;
+  isCheck: boolean;
+}
 
-const CheckBtn = (props: Props) => {
+const CheckBtn = ({ id, isCheck }: Props) => {
+  const dispatch = useDispatch();
+  const onToggle = (id: string) => dispatch(toggleTodo(id));
+
   return (
     <>
-      <Button>✅</Button>
+      <Button onClick={() => onToggle(id)}>{isCheck ? '👍' : '👎'}</Button>
     </>
   );
 };

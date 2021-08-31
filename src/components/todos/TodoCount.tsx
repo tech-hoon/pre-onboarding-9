@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-interface Props {}
+const TodoCount = () => {
+  const todos = useSelector((state: RootState) => state.todos);
 
-const TodoCount = (props: Props) => {
-  return <Title>남은 일이 3개 남았어요</Title>;
+  return <Title>남은 일이 {todos.length}개 남았어요</Title>;
 };
 
 const Title = styled.p`
