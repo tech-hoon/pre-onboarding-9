@@ -4,15 +4,15 @@
 
 ## ☁ Basic requirements
 
-| ✅ `Typescript` 기반으로 Todo-List를 구현
+ ✅ `Typescript` 기반으로 Todo-List를 구현
 
-| ✅ 아이템 추가, 삭제, 수정, 체크 기능
+ ✅ 아이템 추가, 삭제, 수정, 체크 기능
 
-| ✅ `redux` + `redux-saga` 사용
+ ✅ `redux` + `redux-saga` 사용
 
-| ✅ 서버 URL이 있다는 가정으로 구현
+ ✅ 서버 URL이 있다는 가정으로 구현
 
-| ✅ `JSON-Server`로 mock server 구축
+ ✅ `JSON-Server`로 mock server 구축
 
 <br>
 
@@ -55,5 +55,4 @@ $ npm run build
 ## ⚡️ Demo
 
 ![demo1](https://user-images.githubusercontent.com/19265753/131706421-37cb64e6-89a0-46f6-aad9-486478a318a4.gif)
-
 ![demo2](https://user-images.githubusercontent.com/19265753/131706434-b3a4e81b-c3ef-4f7f-bd65-88d3fdcc0467.gif)
