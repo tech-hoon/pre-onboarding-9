@@ -1,8 +1,9 @@
 import { FETCH_SUCCESS, TODO_UPDATE, FETCH_FAILURE, TodoTypes } from './types';
 
-export const fetchSuccess = (todoList: TodoTypes[]) => ({
+export const fetchSuccess = (todoList: TodoTypes[], count: number) => ({
   type: FETCH_SUCCESS,
-  payload: todoList,
+  todoList,
+  count,
 });
 
 export const fetchFailure = (msg: string) => ({

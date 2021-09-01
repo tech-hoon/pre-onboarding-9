@@ -8,7 +8,7 @@ interface Props {
 }
 
 const CheckBtn = ({ todo }: Props) => {
-  const { todoList, msg } = useSelector((state: RootState) => state.todos);
+  const { todoList } = useSelector((state: RootState) => state.todos);
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ const CheckBtn = ({ todo }: Props) => {
 
   return (
     <>
-      <Button onClick={() => onToggle()}>{todo.isCheck ? '👍' : '👎'}</Button>
+      <Button onClick={() => onToggle()}>{todo.isCheck ? '☑️' : '✅'}</Button>
     </>
   );
 };

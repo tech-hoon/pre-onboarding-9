@@ -6,7 +6,7 @@ import { RootState } from './store';
 import { FETCH_TODOS } from 'store/actions/types';
 
 const App: React.FC = () => {
-  const { todoList, msg } = useSelector((state: RootState) => state.todos);
+  const { todoList } = useSelector((state: RootState) => state.todos);
 
   const dispatch = useDispatch();
 

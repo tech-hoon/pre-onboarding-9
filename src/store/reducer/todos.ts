@@ -8,13 +8,13 @@ export type TodosAction =
   | ReturnType<typeof updateTodo>;
 
 export type TodosState = {
-  msg: string;
+  count: number;
   todoList: TodoTypes[];
   error: boolean;
 };
 
 const initialState: TodosState = {
-  msg: '',
+  count: 0,
   todoList: [],
   error: false,
 };
@@ -22,13 +22,17 @@ const initialState: TodosState = {
 function todos(state = initialState, action: TodosAction): TodosState {
   switch (action.type) {
     case FETCH_SUCCESS:
-      return { ...state, msg: '아이템을 불러왔습니다', todoList: action.payload };
+      return {
+        ...state,
+        todoList: action.todoList,
+        count: action.count,
+      };
 
     case TODO_UPDATE:
-      return { ...state, msg: '아이템이 업데이트 되었습니다', todoList: action.payload };
+      return { ...state, todoList: action.payload };
 
     case FETCH_FAILURE:
-      return { ...state, msg: action.payload, error: true };
+      return { ...state, error: true };
 
     default:
       return state;

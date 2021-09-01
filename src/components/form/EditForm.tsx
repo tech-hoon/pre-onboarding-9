@@ -11,7 +11,7 @@ interface Props {
 
 const EditForm = ({ todo, handleToggle }: Props) => {
   const dispatch = useDispatch();
-  const { todoList, msg } = useSelector((state: RootState) => state.todos);
+  const { todoList } = useSelector((state: RootState) => state.todos);
   const { value, onSubmit, onChange } = useForm(onEdit);
 
   function onEdit(content: string) {

@@ -8,7 +8,8 @@ export async function getFetchTodos(url: string) {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    return await res.json();
+    const data = await res.json();
+    return { todoList: data, count: data.length };
   } catch (error) {
     throw new Error();
   }
@@ -27,7 +28,7 @@ export async function postAddTodo(url: string, newTodo: TodoTypes) {
     const data = await res.json();
     return data;
   } catch (error) {
-    throw new Error();
+    console.log(error);
   }
 }
 
