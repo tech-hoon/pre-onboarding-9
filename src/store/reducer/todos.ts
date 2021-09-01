@@ -10,12 +10,14 @@ export type TodosAction =
 export type TodosState = {
   count: number;
   todoList: TodoTypes[];
+  loading: boolean;
   error: boolean;
 };
 
 const initialState: TodosState = {
   count: 0,
   todoList: [],
+  loading: true,
   error: false,
 };
 
@@ -24,15 +26,16 @@ function todos(state = initialState, action: TodosAction): TodosState {
     case FETCH_SUCCESS:
       return {
         ...state,
+        loading: false,
         todoList: action.todoList,
         count: action.count,
       };
 
     case TODO_UPDATE:
-      return { ...state, todoList: action.payload };
+      return { ...state, loading: false, todoList: action.payload };
 
     case FETCH_FAILURE:
-      return { ...state, error: true };
+      return { ...state, loading: false, todoList: [], error: true };
 
     default:
       return state;

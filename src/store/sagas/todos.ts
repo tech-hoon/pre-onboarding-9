@@ -12,23 +12,24 @@ import {
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { getFetchTodos, postAddTodo, postRemoveTodo, postToggleTodo } from 'api/fetch';
 import { currentDate } from 'utils/date';
+import nextID from 'utils/nextID';
 
 function* fetchTodos(): any {
   try {
     const request = yield call(getFetchTodos, `/todo`);
     const { todoList, count } = request;
-    yield put({ type: FETCH_SUCCESS, todoList, count });
+    yield put({ type: FETCH_SUCCESS, todoList, count }); // redux store
 
-    console.log('%c response: GET /todo', 'color:blue');
-    console.log('%c request:', 'color:green', request);
+    console.log('%c response: GET /todo', 'color:blue'); // res msg
+    console.log('%c request:', 'color:green', request); // req msg
   } catch (error) {
     yield put({ type: FETCH_FAILURE, payload: error });
   }
 }
 
-export function* addTodo({ prevTodoList, content }: any): any {
+function* addTodo({ prevTodoList, content }: any): any {
   const todo: TodoTypes = {
-    id: '',
+    id: nextID(prevTodoList),
     content: content,
     isCheck: false,
     createdAt: currentDate(),
@@ -41,6 +42,7 @@ export function* addTodo({ prevTodoList, content }: any): any {
       payload: [...prevTodoList, newTodo],
     }); // redux store
 
+    // res, req msg
     console.log('%c response: GET /todo 생성', 'color:blue');
     console.log(
       `%c request: { msg: 아이템 "${newTodo.content}"이(가) 생성되었습니다. }`,
@@ -51,12 +53,13 @@ export function* addTodo({ prevTodoList, content }: any): any {
   }
 }
 
-export function* removeTodo({ prevTodoList, todo: { id, content } }: any): any {
+function* removeTodo({ prevTodoList, todo: { id, content } }: any): any {
   try {
     yield call(postRemoveTodo, `/todo/${id}`); // API POST
     const newArr = prevTodoList.filter((item: TodoTypes) => item.id !== id);
     yield put({ type: TODO_UPDATE, payload: newArr }); // redux store
 
+    // res, req msg
     console.log('%c response: POST /todo 삭제', 'color:blue');
     console.log(`%c request: { msg: 아이템 "${content}"이(가) 삭제되었습니다. }`, 'color:green');
   } catch (e) {
@@ -64,7 +67,7 @@ export function* removeTodo({ prevTodoList, todo: { id, content } }: any): any {
   }
 }
 
-export function* toggleTodo({ prevTodoList, todo }: any): any {
+function* toggleTodo({ prevTodoList, todo }: any): any {
   const { id, content, isCheck } = todo;
 
   try {
@@ -74,6 +77,7 @@ export function* toggleTodo({ prevTodoList, todo }: any): any {
     );
     yield put({ type: TODO_UPDATE, payload: newArr }); // redux store
 
+    // res, req msg
     console.log('%c response: POST /todo 체크', 'color:blue');
     console.log(
       `%c request: { msg: 아이템 "${content}"의 체크가 ${isCheck}로 변경되었습니다. }`,
@@ -84,7 +88,7 @@ export function* toggleTodo({ prevTodoList, todo }: any): any {
   }
 }
 
-export function* editTodo({ prevTodoList, todo }: any): any {
+function* editTodo({ prevTodoList, todo }: any): any {
   const { id, content } = todo;
 
   try {
@@ -94,6 +98,7 @@ export function* editTodo({ prevTodoList, todo }: any): any {
     );
     yield put({ type: TODO_UPDATE, payload: newArr }); // redux store
 
+    // res, req msg
     console.log('%c response: POST /todo 수정', 'color:blue');
     console.log(
       `%c request: { msg: 아이템 내용이 "${content}"(으)로 수정되었습니다. }`,

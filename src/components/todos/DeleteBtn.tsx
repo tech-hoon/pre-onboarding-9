@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { REMOVE_TODO, TodoTypes } from 'store/actions/types';
@@ -26,4 +27,4 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-export default DeleteBtn;
+export default React.memo(DeleteBtn);

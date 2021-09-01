@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { TodoTypes, TOGGLE_TODO } from 'store/actions/types';
@@ -27,4 +28,4 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-export default CheckBtn;
+export default React.memo(CheckBtn);

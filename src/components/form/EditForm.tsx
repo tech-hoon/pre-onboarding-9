@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
@@ -42,7 +43,8 @@ const Input = styled.input`
 `;
 
 const CancelBtn = styled.button`
-  background-color: #aaaaaa;
+  color: #686868;
+  background-color: #cecece;
   padding: 10px;
   width: 20%;
 `;
@@ -53,4 +55,4 @@ const CreateBtn = styled.button`
   padding: 10px;
   width: 20%;
 `;
-export default EditForm;
+export default React.memo(EditForm);

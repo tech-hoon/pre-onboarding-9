@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -11,7 +12,7 @@ const TodoCount = () => {
 const Title = styled.p`
   color: white;
   text-align: center;
-  margin: 12px 0;
+  margin: 16px 0;
 `;
 
-export default TodoCount;
+export default React.memo(TodoCount);

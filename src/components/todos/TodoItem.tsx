@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DeleteBtn, CheckBtn, EditBtn } from 'components';
 import { TodoTypes } from 'store/actions/types';
@@ -31,7 +31,9 @@ const TodoItem = ({ todo, todo: { id, content, isCheck } }: Props) => {
 const Wrapper = styled.div`
   border: 0.1px solid #eeeeee;
   padding: 10px;
-  margin: 4px 0;
+  margin: 8px 0;
+  border-radius: 4px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,8 +46,4 @@ const Content = styled.h2`
   flex: 1;
 `;
 
-const Input = styled.input`
-  flex: 1;
-`;
-
-export default TodoItem;
+export default React.memo(TodoItem);

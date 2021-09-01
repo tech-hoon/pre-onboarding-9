@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -21,4 +22,4 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-export default EditBtn;
+export default React.memo(EditBtn);

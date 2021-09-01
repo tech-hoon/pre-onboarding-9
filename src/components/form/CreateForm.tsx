@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'hooks/useForm';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,9 +28,10 @@ const FormStyled = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 10px;
+  padding: 14px;
   width: 80%;
   font-size: 14px;
+  border-radius: 4px 0 0 4px;
 `;
 
 const CreateBtn = styled.button`
@@ -37,5 +39,6 @@ const CreateBtn = styled.button`
   background-color: #5ecdb3;
   padding: 10px;
   width: 20%;
+  border-radius: 0 4px 4px 0;
 `;
-export default CreateForm;
+export default React.memo(CreateForm);

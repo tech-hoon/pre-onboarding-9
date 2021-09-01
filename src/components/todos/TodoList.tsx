@@ -1,10 +1,14 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
 
-const TodoList: React.FC = ({ children }) => {
+type Props = {
+  children: JSX.Element | JSX.Element[];
+};
+
+const TodoList: React.FC<Props> = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
 const Wrapper = styled.div``;
 
-export default TodoList;
+export default React.memo(TodoList);
