@@ -1,6 +1,6 @@
 import {
-  FETCH_TODOS,
   TodoTypes,
+  FETCH_TODOS,
   FETCH_FAILURE,
   FETCH_SUCCESS,
   TODO_UPDATE,
