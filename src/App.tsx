@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { TodoList, TodoItem, TodoCount, Form } from 'components';
-import { useSelector } from 'react-redux';
+import { TodoList, TodoItem, TodoCount, CreateForm } from 'components';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store';
+import { FETCH_TODOS } from 'store/actions/types';
 
 const App: React.FC = () => {
-  const todos = useSelector((state: RootState) => state.todos);
+  const { todoList, msg } = useSelector((state: RootState) => state.todos);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const onFetch = () => dispatch({ type: FETCH_TODOS });
+
+    onFetch();
+  }, [dispatch]);
 
   return (
     <>
       <Wrapper>
         <Container>
           <Title>Todo List</Title>
-          <Form />
+          <CreateForm />
           <TodoCount />
           <TodoList>
-            {todos.map((todo, id) => (
+            {todoList.map((todo, id) => (
               <TodoItem key={id} todo={todo} />
             ))}
           </TodoList>
@@ -35,10 +44,10 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 90%;
   max-width: 400px;
+  margin: auto 0;
 `;
 
 const Title = styled.h1`
-  margin-top: 33%;
   margin-bottom: 12px;
   font-size: 30px;
   text-align: center;

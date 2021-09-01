@@ -1,19 +1,24 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { toggleTodo } from 'store/actions/todos';
+import { useDispatch, useSelector } from 'react-redux';
+import { TodoTypes, TOGGLE_TODO } from 'store/actions/types';
+import { RootState } from 'store';
 
 interface Props {
-  id: string;
-  isCheck: boolean;
+  todo: TodoTypes;
 }
 
-const CheckBtn = ({ id, isCheck }: Props) => {
+const CheckBtn = ({ todo }: Props) => {
+  const { todoList, msg } = useSelector((state: RootState) => state.todos);
+
   const dispatch = useDispatch();
-  const onToggle = (id: string) => dispatch(toggleTodo(id));
+
+  function onToggle() {
+    dispatch({ type: TOGGLE_TODO, prevTodoList: todoList, todo: todo });
+  }
 
   return (
     <>
-      <Button onClick={() => onToggle(id)}>{isCheck ? '👍' : '👎'}</Button>
+      <Button onClick={() => onToggle()}>{todo.isCheck ? '👍' : '👎'}</Button>
     </>
   );
 };

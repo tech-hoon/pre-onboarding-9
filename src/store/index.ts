@@ -1,10 +1,14 @@
-import { combineReducers } from 'redux';
-import todos from './reducer/todos';
+import { applyMiddleware, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducer';
+import sagas from './sagas';
 
-const rootReducer = combineReducers({
-  todos,
-});
+const sagaMiddleware = createSagaMiddleware();
 
-export default rootReducer;
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(sagas);
+
+export default store;
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -1,34 +1,35 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from 'store/actions/types';
-import { addTodo, toggleTodo, removeTodo } from 'store/actions/todos';
+import { TODO_UPDATE, FETCH_SUCCESS, FETCH_FAILURE } from 'store/actions/types';
+import { fetchSuccess, fetchFailure, updateTodo } from 'store/actions/todos';
 import { TodoTypes } from 'store/actions/types';
-import { currentDate } from 'utils/date';
 
-type TodosAction =
-  | ReturnType<typeof addTodo>
-  | ReturnType<typeof toggleTodo>
-  | ReturnType<typeof removeTodo>;
+export type TodosAction =
+  | ReturnType<typeof fetchSuccess>
+  | ReturnType<typeof fetchFailure>
+  | ReturnType<typeof updateTodo>;
 
-const initialState: TodoTypes[] = [
-  { id: '1', content: 'todo1', isCheck: false, createdAt: '2021-09-01' },
-  { id: '2', content: 'todo2', isCheck: false, createdAt: '2021-09-01' },
-  { id: '3', content: 'todo3', isCheck: false, createdAt: '2021-09-01' },
-];
+export type TodosState = {
+  msg: string;
+  todoList: TodoTypes[];
+  error: boolean;
+};
 
-function todos(state: TodoTypes[] = initialState, action: TodosAction): TodoTypes[] {
+const initialState: TodosState = {
+  msg: '',
+  todoList: [],
+  error: false,
+};
+
+function todos(state = initialState, action: TodosAction): TodosState {
   switch (action.type) {
-    case ADD_TODO:
-      return state.concat({
-        id: action.payload.id,
-        content: action.payload.content,
-        isCheck: false,
-        createdAt: currentDate(),
-      });
-    case TOGGLE_TODO:
-      return state.map((todo) =>
-        todo.id === action.payload ? { ...todo, isCheck: !todo.isCheck } : todo
-      );
-    case REMOVE_TODO:
-      return state.filter((todo) => todo.id !== action.payload);
+    case FETCH_SUCCESS:
+      return { ...state, msg: '아이템을 불러왔습니다', todoList: action.payload };
+
+    case TODO_UPDATE:
+      return { ...state, msg: '아이템이 업데이트 되었습니다', todoList: action.payload };
+
+    case FETCH_FAILURE:
+      return { ...state, msg: action.payload, error: true };
+
     default:
       return state;
   }

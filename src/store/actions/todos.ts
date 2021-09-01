@@ -1,24 +1,16 @@
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from './types';
+import { FETCH_SUCCESS, TODO_UPDATE, FETCH_FAILURE, TodoTypes } from './types';
 
-let nextId = 1;
-
-// 액션 생성 함수
-export const addTodo = (content: string) => ({
-  type: ADD_TODO,
-  payload: {
-    id: String(nextId++),
-    content,
-    isCheck: false,
-    createdAt: '2021-05-13',
-  },
+export const fetchSuccess = (todoList: TodoTypes[]) => ({
+  type: FETCH_SUCCESS,
+  payload: todoList,
 });
 
-export const toggleTodo = (id: string) => ({
-  type: TOGGLE_TODO,
-  payload: id,
+export const fetchFailure = (msg: string) => ({
+  type: FETCH_FAILURE,
+  payload: msg,
 });
 
-export const removeTodo = (id: string) => ({
-  type: REMOVE_TODO,
-  payload: id,
+export const updateTodo = (todoList: TodoTypes[]) => ({
+  type: TODO_UPDATE,
+  payload: todoList,
 });
