@@ -1,0 +1,34 @@
+{
+  "todo": [
+    {
+      "id": "FreJ_xd",
+      "content": "JavaScript 공부",
+      "isCheck": false,
+      "createdAt": "2021-9-1"
+    },
+    {
+      "id": "P9tgQpZ",
+      "content": "CSS 공부",
+      "isCheck": true,
+      "createdAt": "2021-9-1"
+    },
+    {
+      "id": "O84UEmw",
+      "content": "React 공부",
+      "isCheck": false,
+      "createdAt": "2021-9-1"
+    },
+    {
+      "id": "YdMVUH8",
+      "content": "메이플스토리",
+      "isCheck": true,
+      "createdAt": "2021-9-1"
+    },
+    {
+      "id": "GKNcYcN",
+      "content": "바람의 나라",
+      "isCheck": false,
+      "createdAt": "2021-9-1"
+    }
+  ]
+}
