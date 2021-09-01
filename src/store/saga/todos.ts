@@ -9,14 +9,15 @@ import {
   TOGGLE_TODO,
   EDIT_TODO,
 } from '../actions/types';
+import { AnyAction } from 'redux';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getFetchTodos, postAddTodo, postRemoveTodo, postToggleTodo } from 'api/fetch';
 import { currentDate } from 'utils/date';
 import nextID from 'utils/nextID';
 
-function* fetchTodos(): any {
+function* fetchTodos() {
   try {
-    const request = yield call(getFetchTodos, `/todo`);
+    const request: AnyAction = yield call(getFetchTodos, `/todo`);
     const { todoList, count } = request;
     yield put({ type: FETCH_SUCCESS, todoList, count }); // redux store
 
@@ -27,7 +28,7 @@ function* fetchTodos(): any {
   }
 }
 
-function* addTodo({ prevTodoList, content }: any): any {
+function* addTodo({ prevTodoList, content }: AnyAction) {
   const todo: TodoTypes = {
     id: nextID(prevTodoList),
     content: content,
@@ -36,16 +37,16 @@ function* addTodo({ prevTodoList, content }: any): any {
   };
 
   try {
-    const newTodo = yield call(postAddTodo, `/todo`, todo); // API POST
+    yield call(postAddTodo, `/todo`, todo); // API POST
     yield put({
       type: TODO_UPDATE,
-      payload: [...prevTodoList, newTodo],
+      payload: [...prevTodoList, todo],
     }); // redux store
 
     // res, req msg
     console.log('%c response: GET /todo 생성', 'color:blue');
     console.log(
-      `%c request: { msg: 아이템 "${newTodo.content}"이(가) 생성되었습니다. }`,
+      `%c request: { msg: 아이템 "${todo.content}"이(가) 생성되었습니다. }`,
       'color:green'
     );
   } catch (e) {
@@ -53,7 +54,7 @@ function* addTodo({ prevTodoList, content }: any): any {
   }
 }
 
-function* removeTodo({ prevTodoList, todo: { id, content } }: any): any {
+function* removeTodo({ prevTodoList, todo: { id, content } }: AnyAction) {
   try {
     yield call(postRemoveTodo, `/todo/${id}`); // API POST
     const newArr = prevTodoList.filter((item: TodoTypes) => item.id !== id);
@@ -67,7 +68,7 @@ function* removeTodo({ prevTodoList, todo: { id, content } }: any): any {
   }
 }
 
-function* toggleTodo({ prevTodoList, todo }: any): any {
+function* toggleTodo({ prevTodoList, todo }: AnyAction) {
   const { id, content, isCheck } = todo;
 
   try {
@@ -88,7 +89,7 @@ function* toggleTodo({ prevTodoList, todo }: any): any {
   }
 }
 
-function* editTodo({ prevTodoList, todo }: any): any {
+function* editTodo({ prevTodoList, todo }: AnyAction) {
   const { id, content } = todo;
 
   try {
