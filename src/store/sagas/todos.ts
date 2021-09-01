@@ -9,7 +9,7 @@ import {
   TOGGLE_TODO,
   EDIT_TODO,
 } from '../actions/types';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { getFetchTodos, postAddTodo, postRemoveTodo, postToggleTodo } from 'api/fetch';
 import { currentDate } from 'utils/date';
 import nextID from 'utils/nextID';
@@ -110,9 +110,9 @@ function* editTodo({ prevTodoList, todo }: any): any {
 }
 
 export function* todosSaga() {
-  yield takeEvery(FETCH_TODOS, fetchTodos);
-  yield takeEvery(ADD_TODO, addTodo);
-  yield takeEvery(REMOVE_TODO, removeTodo);
-  yield takeEvery(TOGGLE_TODO, toggleTodo);
-  yield takeEvery(EDIT_TODO, editTodo);
+  yield takeLatest(FETCH_TODOS, fetchTodos);
+  yield takeLatest(ADD_TODO, addTodo);
+  yield takeLatest(REMOVE_TODO, removeTodo);
+  yield takeLatest(TOGGLE_TODO, toggleTodo);
+  yield takeLatest(EDIT_TODO, editTodo);
 }
