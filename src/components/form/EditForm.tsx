@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'hooks/useForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { EDIT_TODO, TodoTypes } from 'store/actions/types';
-import { RootState } from 'store';
+import { TodoTypes } from 'store/actions/types';
+import { useTodo } from 'hooks/useTodo';
 
 interface Props {
   handleToggle: () => void;
@@ -11,14 +10,8 @@ interface Props {
 }
 
 const EditForm = ({ todo, handleToggle }: Props) => {
-  const dispatch = useDispatch();
-  const { todoList } = useSelector((state: RootState) => state.todos);
-  const { value, onSubmit, onChange } = useForm(onEdit);
-
-  function onEdit(content: string) {
-    dispatch({ type: EDIT_TODO, prevTodoList: todoList, todo: { ...todo, content } });
-    handleToggle();
-  }
+  const { onEdit } = useTodo();
+  const { value, onSubmit, onChange } = useForm(() => onEdit(value, todo, handleToggle));
 
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -47,6 +40,12 @@ const CancelBtn = styled.button`
   background-color: #cecece;
   padding: 10px;
   width: 20%;
+
+  &:hover {
+    background-color: #636363ea;
+    color: white;
+    transition: 0.5s ease;
+  }
 `;
 
 const CreateBtn = styled.button`
@@ -54,5 +53,10 @@ const CreateBtn = styled.button`
   background-color: #5ecdb3;
   padding: 10px;
   width: 20%;
+
+  &:hover {
+    background-color: #237965ea;
+    transition: 0.5s ease;
+  }
 `;
 export default React.memo(EditForm);

@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { TodoList, TodoItem, TodoCount, CreateForm } from 'components';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './store';
-import { FETCH_TODOS } from 'store/actions/types';
+import { TodoList, TodoItem, TodoCount, CreateForm, LoadingContainer } from 'components';
+import { useTodo } from 'hooks/useTodo';
 
 const App: React.FC = () => {
-  const { todoList, loading } = useSelector((state: RootState) => state.todos);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const onFetch = () => dispatch({ type: FETCH_TODOS });
-
-    onFetch();
-  }, [dispatch]);
+  const { todoList, loading } = useTodo();
 
   return (
     <>
@@ -46,29 +36,8 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const LoadingContainer = styled.div`
-  margin: auto;
-  width: 100px;
-  height: 100px;
-  border: 5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-  @keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  @-webkit-keyframes spin {
-    to {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-`;
-
 const TodoContainer = styled.div`
-  width: 90%;
+  width: 85%;
   max-width: 400px;
   margin: auto 0;
 `;

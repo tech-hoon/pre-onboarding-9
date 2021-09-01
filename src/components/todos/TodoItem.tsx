@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { DeleteBtn, CheckBtn, EditBtn } from 'components';
+import { DeleteBtn, CheckBtn, EditBtn, EditForm } from 'components';
 import { TodoTypes } from 'store/actions/types';
-import EditForm from 'components/form/EditForm';
 
 interface Props {
   todo: TodoTypes;
 }
 
-const TodoItem = ({ todo, todo: { id, content, isCheck } }: Props) => {
+const TodoItem = ({ todo, todo: { content } }: Props) => {
   const [editToggle, setEditToggle] = useState(false);
   const handleToggle = () => setEditToggle(!editToggle);
 
@@ -18,7 +17,7 @@ const TodoItem = ({ todo, todo: { id, content, isCheck } }: Props) => {
         <>
           <CheckBtn todo={todo} />
           <Content>{content}</Content>
-          <EditBtn id={id} handleToggle={handleToggle} />
+          <EditBtn handleToggle={handleToggle} />
           <DeleteBtn todo={todo} />
         </>
       ) : (
@@ -28,7 +27,7 @@ const TodoItem = ({ todo, todo: { id, content, isCheck } }: Props) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   border: 0.1px solid #eeeeee;
   padding: 10px;
   margin: 8px 0;

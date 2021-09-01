@@ -2,14 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  id: string;
   handleToggle: () => void;
 }
 
-const EditBtn = ({ id, handleToggle }: Props) => {
-  const onClick = () => {
-    handleToggle();
-  };
+const EditBtn = ({ handleToggle }: Props) => {
+  const onClick = () => handleToggle();
 
   return (
     <>
@@ -20,6 +17,9 @@ const EditBtn = ({ id, handleToggle }: Props) => {
 
 const Button = styled.button`
   font-size: 16px;
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export default React.memo(EditBtn);

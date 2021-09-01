@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'hooks/useForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { ADD_TODO } from 'store/actions/types';
-import { RootState } from 'store';
+import { useTodo } from 'hooks/useTodo';
 
 const CreateForm = () => {
-  const dispatch = useDispatch();
-  const { todoList } = useSelector((state: RootState) => state.todos);
+  const { onAdd } = useTodo();
   const { value, onSubmit, onChange } = useForm(onAdd);
-
-  function onAdd(content: string) {
-    dispatch({ type: ADD_TODO, prevTodoList: todoList, content });
-  }
 
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -40,5 +33,10 @@ const CreateBtn = styled.button`
   padding: 10px;
   width: 20%;
   border-radius: 0 4px 4px 0;
+
+  &:hover {
+    background-color: #237965ea;
+    transition: 0.5s ease;
+  }
 `;
 export default React.memo(CreateForm);

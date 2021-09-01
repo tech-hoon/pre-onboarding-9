@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { REMOVE_TODO, TodoTypes } from 'store/actions/types';
-import { RootState } from 'store';
+import { TodoTypes } from 'store/actions/types';
+import { useTodo } from 'hooks/useTodo';
 
 interface Props {
   todo: TodoTypes;
 }
 
 const DeleteBtn = ({ todo }: Props) => {
-  const { todoList } = useSelector((state: RootState) => state.todos);
-  const dispatch = useDispatch();
-
-  function onRemove() {
-    dispatch({ type: REMOVE_TODO, prevTodoList: todoList, todo });
-  }
+  const { onRemove } = useTodo();
 
   return (
     <>
-      <Button onClick={() => onRemove()}>❌</Button>
+      <Button onClick={() => onRemove(todo)}>❌</Button>
     </>
   );
 };
 
 const Button = styled.button`
   font-size: 16px;
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export default React.memo(DeleteBtn);

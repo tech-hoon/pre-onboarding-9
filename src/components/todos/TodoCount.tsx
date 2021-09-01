@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useTodo } from 'hooks/useTodo';
 
 const TodoCount = () => {
-  const { todoList } = useSelector((state: RootState) => state.todos);
-
+  const { todoList } = useTodo();
   return <Title>남은 일이 {todoList.length}개 남았어요</Title>;
 };
 

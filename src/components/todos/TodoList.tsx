@@ -9,6 +9,10 @@ const TodoList: React.FC<Props> = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.ul`
+  height: 55vh;
+  overflow: hidden;
+  overflow-y: scroll;
+`;
 
 export default React.memo(TodoList);
