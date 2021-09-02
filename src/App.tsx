@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { TodoList, TodoItem, TodoCount, CreateForm, LoadingContainer } from 'components';
 import { useTodo } from 'hooks/useTodo';
 
 const App: React.FC = () => {
-  const { todoList, loading } = useTodo();
+  const { todoList, loading, onFetch } = useTodo();
+
+  useEffect(() => {
+    onFetch();
+  }, []);
 
   return (
     <>

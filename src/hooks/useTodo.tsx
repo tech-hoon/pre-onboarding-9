@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 import {
@@ -14,13 +13,9 @@ export const useTodo = () => {
   const { todoList, loading } = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    function onFetch() {
-      dispatch({ type: FETCH_TODOS });
-    }
-
-    onFetch();
-  }, []);
+  function onFetch() {
+    dispatch({ type: FETCH_TODOS });
+  }
 
   function onAdd(content: string) {
     dispatch({ type: ADD_TODO, prevTodoList: todoList, content });
@@ -39,5 +34,5 @@ export const useTodo = () => {
     dispatch({ type: REMOVE_TODO, prevTodoList: todoList, todo });
   }
 
-  return { todoList, loading, onAdd, onEdit, onToggle, onRemove };
+  return { todoList, loading, onFetch, onAdd, onEdit, onToggle, onRemove };
 };
