@@ -53,6 +53,8 @@ $ npm run build
 <br>
 
 ## ⚡️ Demo
-
+### 기능
 ![demo1](https://user-images.githubusercontent.com/19265753/131706421-37cb64e6-89a0-46f6-aad9-486478a318a4.gif)
+
+### mock server 요청 & 응답 메시지
 ![demo2](https://user-images.githubusercontent.com/19265753/131706434-b3a4e81b-c3ef-4f7f-bd65-88d3fdcc0467.gif)
